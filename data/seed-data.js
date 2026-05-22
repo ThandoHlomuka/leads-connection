@@ -1,0 +1,58 @@
+const SEED = (() => {
+  const d = (daysAgo) => {
+    const date = new Date();
+    date.setDate(date.getDate() - daysAgo);
+    return date.toISOString().split('T')[0];
+  };
+  const future = (daysAhead) => {
+    const date = new Date();
+    date.setDate(date.getDate() + daysAhead);
+    return date.toISOString().split('T')[0];
+  };
+
+  return {
+    opportunities: [
+      // ── RFQs ──
+      { id: 'opp_1', type: 'rfq', title: 'Website Development for E-Commerce Platform', org: 'Takealot Group', orgLogo: '🛒', location: 'Cape Town', value: 450000, deadline: future(14), status: 'open', posted: d(3), sector: 'Technology', description: 'Takealot Group is seeking qualified web developers to build a new e-commerce platform for their growing marketplace. The scope includes frontend development, payment integration, inventory management, and mobile responsiveness.', requirements: ['5+ years web development', 'React/Angular experience', 'E-commerce experience', 'Payment gateway integration', 'Team of 3+ developers'], contact: { name: 'Sarah Khumalo', email: 's.khumalo@takealot.co.za', phone: '+27 11 234 5678' } },
+      { id: 'opp_2', type: 'rfq', title: 'Office Furniture Supply & Installation', org: 'Standard Bank', orgLogo: '🏦', location: 'Johannesburg', value: 280000, deadline: future(10), status: 'open', posted: d(5), sector: 'Corporate Services', description: 'Standard Bank requires quotes for the supply and installation of modern office furniture across their Sandton headquarters. Covering 3 floors with approx 200 workstations.', requirements: ['Minimum 3 years experience', 'SABS certified products', 'BBBEE Level 1 or 2', 'Previous corporate installations', '12-month warranty'], contact: { name: 'James Mokoena', email: 'jmokoena@standardbank.co.za', phone: '+27 11 345 6789' } },
+      { id: 'opp_3', type: 'rfq', title: 'Mobile App Development – Banking App', org: 'Capitec Bank', orgLogo: '🏦', location: 'Stellenbosch', value: 850000, deadline: future(21), status: 'open', posted: d(2), sector: 'Fintech', description: 'Capitec is looking for a development agency to build a new mobile banking application with features including biometric authentication, instant payments, budgeting tools, and AI-powered financial insights.', requirements: ['Flutter/React Native expertise', 'Banking app experience', 'PCI DSS compliance knowledge', 'UI/UX design capabilities', 'Security audit experience'], contact: { name: 'Linda van Wyk', email: 'lvanwyk@capitec.co.za', phone: '+27 21 456 7890' } },
+      { id: 'opp_4', type: 'rfq', title: 'Solar Panel Installation – Warehouse', org: 'Shoprite Holdings', orgLogo: '🛒', location: 'Durban', value: 620000, deadline: future(30), status: 'open', posted: d(7), sector: 'Renewable Energy', description: 'Shoprite requires a certified solar installation company to install a 500kW solar system at their Durban distribution warehouse. Includes panels, inverters, batteries, and grid-tie system.', requirements: ['SAPVIA certified', 'PV GreenCard', 'Minimum 5MW installed', 'Industrial experience', '5-year workmanship warranty'], contact: { name: 'Thabo Ndlovu', email: 'tndlovu@shoprite.co.za', phone: '+27 31 567 8901' } },
+
+      // ── RFPs ──
+      { id: 'opp_5', type: 'rfp', title: 'Digital Marketing Strategy & Implementation', org: 'MTN South Africa', orgLogo: '📱', location: 'Remote', value: 1200000, deadline: future(45), status: 'open', posted: d(10), sector: 'Marketing', description: 'MTN SA is inviting proposals for a comprehensive digital marketing strategy to increase brand awareness among Gen Z and millennial demographics. Scope includes social media strategy, content creation, influencer partnerships, and performance analytics.', requirements: ['Agency with 5+ years experience', 'Telco/tech industry experience', 'Team of 8+ specialists', 'Data-driven approach', 'Previous campaigns with KPIs'], contact: { name: 'Zanele Dlamini', email: 'zdlamini@mtn.co.za', phone: '+27 11 678 9012' } },
+      { id: 'opp_6', type: 'rfp', title: 'Cloud Migration & IT Infrastructure Upgrade', org: 'SASOL', orgLogo: '🏭', location: 'Secunda', value: 3500000, deadline: future(60), status: 'open', posted: d(15), sector: 'Technology', description: 'SASOL is seeking proposals for a complete cloud migration from on-premise infrastructure to AWS/Azure hybrid cloud. Includes security audit, data migration, staff training, and ongoing managed services.', requirements: ['AWS/Azure Advanced Partner', 'Enterprise migration experience', 'ISO 27001 certified', 'Disaster recovery expertise', 'Minimum 10 enterprise migrations'], contact: { name: 'Pieter Botha', email: 'pbotha@sasol.com', phone: '+27 17 789 0123' } },
+
+      // ── Tenders ──
+      { id: 'opp_7', type: 'tender', title: 'Road Construction & Rehabilitation – N3 Corridor', org: 'SANRAL', orgLogo: '🛣️', location: 'Gauteng/Free State', value: 45000000, deadline: future(90), status: 'open', posted: d(20), sector: 'Infrastructure', description: 'SANRAL invites tenders for the construction and rehabilitation of a 45km stretch of the N3 highway between Heidelberg and Villiers. Includes road widening, bridge repairs, drainage systems, and safety barriers.', requirements: ['CIDB grading 9CE or higher', 'Minimum 15 years experience', 'BBBEE Level 1', 'Safety records', 'Financial capacity > R50M'], contact: { name: 'Tendai Moyo', email: 'tmoyo@sanral.co.za', phone: '+27 12 345 6789' } },
+      { id: 'opp_8', type: 'tender', title: 'Water Treatment Plant Upgrade', org: 'City of Cape Town', orgLogo: '🏛️', location: 'Cape Town', value: 28000000, deadline: future(75), status: 'open', posted: d(18), sector: 'Infrastructure', description: 'The City of Cape Town is accepting tenders for the upgrade of the Faure Water Treatment Plant. Scope includes new filtration systems, pump station upgrades, SCADA integration, and 24-month maintenance contract.', requirements: ['CIDB grading 8ME or higher', 'Water treatment experience', 'Environmental compliance', 'Community engagement plan', '5 similar projects completed'], contact: { name: 'Patricia Daniels', email: 'pdaniels@capetown.gov.za', phone: '+27 21 456 7890' } },
+
+      // ── Sales Leads ──
+      { id: 'opp_9', type: 'lead', title: 'Looking for Graphic Designer – Brand Refresh', org: 'Nando\'s', orgLogo: '🍗', location: 'Remote', value: 95000, deadline: future(7), status: 'hot', posted: d(1), sector: 'Creative', description: 'Nando\'s is looking for a freelance graphic designer to lead their brand refresh project. Work includes new menu designs, social media templates, in-store signage, and brand guidelines documentation.', requirements: ['Portfolio with food/brand work', '5+ years experience', 'Figma/Adobe Creative Suite', 'Brand identity experience', 'Quick turnaround'], contact: { name: 'Mike Brown', email: 'mbrown@nandos.co.za', phone: '+27 21 789 0123' } },
+      { id: 'opp_10', type: 'lead', title: 'Freelance Copywriter for Blog & Social', org: 'Discovery Health', orgLogo: '🏥', location: 'Remote', value: 55000, deadline: future(5), status: 'hot', posted: d(1), sector: 'Content Writing', description: 'Discovery Health needs a freelance copywriter to produce weekly blog posts, newsletter content, and social media copy focused on health and wellness topics. 4-5 pieces per week.', requirements: ['Health/medical writing experience', 'SEO knowledge', 'Portfolio of published work', 'Can start immediately'], contact: { name: 'Lisa Naidoo', email: 'lnaidoo@discovery.co.za', phone: '+27 11 890 1234' } },
+      { id: 'opp_11', type: 'lead', title: 'Business Plan Writer for Startup Funding', org: 'Venture Capital SA', orgLogo: '💰', location: 'Remote', value: 35000, deadline: future(14), status: 'new', posted: d(0), sector: 'Business Consulting', description: 'A VC-funded startup needs an experienced business plan writer to prepare documentation for their Series A round. Must have experience with financial modeling and investor pitch decks.', requirements: ['Business plan writing experience', 'Financial modeling skills', 'Startup ecosystem knowledge', 'References from funded companies'], contact: { name: 'Andrew Parker', email: 'aparker@vcap.co.za', phone: '+27 11 234 5678' } },
+      { id: 'opp_12', type: 'lead', title: 'Full Stack Developer – SaaS Platform', org: 'Yoco Technologies', orgLogo: '💳', location: 'Cape Town', value: 180000, deadline: future(21), status: 'new', posted: d(2), sector: 'Technology', description: 'Yoco needs a senior full-stack developer for a 6-month contract to help build their next-generation SaaS merchant platform. Node.js, React, TypeScript, PostgreSQL.', requirements: ['Node.js/React 5+ years', 'PostgreSQL expertise', 'SaaS/platform experience', 'CI/CD pipeline knowledge', 'Cape Town based'], contact: { name: 'Ryan Johnson', email: 'ryan@yoco.com', phone: '+27 21 567 8901' } },
+
+      // ── Funders ──
+      { id: 'opp_13', type: 'funder', title: 'SMME Growth Fund – Loans up to R5M', org: 'Industrial Development Corporation', orgLogo: '🏦', location: 'National', value: 5000000, deadline: future(365), status: 'open', posted: d(30), sector: 'Funding', description: 'IDC\'s SMME Growth Fund provides loans from R500K to R5M for small and medium enterprises in manufacturing, agro-processing, technology, and creative industries. Competitive interest rates with flexible repayment terms.', requirements: ['South African registered business', 'Operating for 2+ years', 'Minimum annual turnover R1M', 'BBBEE compliant', 'Detailed business plan'], contact: { name: 'IDC SMME Desk', email: 'smme@idc.co.za', phone: '+27 11 234 5678' } },
+      { id: 'opp_14', type: 'funder', title: 'Tech Startup Angel Investment', org: 'AngelHub Ventures', orgLogo: '🚀', location: 'National', value: 2500000, deadline: future(180), status: 'open', posted: d(14), sector: 'Funding', description: 'AngelHub Ventures is actively seeking early-stage tech startups for angel investment rounds. Focus on fintech, healthtech, edtech, and SaaS. Investments range from R250K to R2.5M with mentorship and networking support.', requirements: ['MVP or working prototype', 'Technology-focused', 'Scalable business model', 'Strong founding team', 'SA registered company'], contact: { name: 'Investments Team', email: 'deals@angelhub.co.za', phone: '+27 21 345 6789' } },
+      { id: 'opp_15', type: 'funder', title: 'Government Small Business Grant', org: 'SEDA – Small Enterprise Development Agency', orgLogo: '🏛️', location: 'National', value: 250000, deadline: future(60), status: 'open', posted: d(5), sector: 'Funding', description: 'SEDA is offering matching grants of up to R250K for small businesses in the manufacturing, technology, and green economy sectors. Grant covers equipment, technology adoption, and skills development.', requirements: ['SA citizen, 18-35 years', 'Business registered for 6+ months', 'Matching contribution required', 'Business plan', 'Mentorship commitment'], contact: { name: 'SEDA Grants Office', email: 'grants@seda.org.za', phone: '+27 12 456 7890' } },
+    ],
+
+    savedOpps: [],
+
+    getStats() {
+      const opps = this.opportunities;
+      return {
+        total: opps.length,
+        leads: opps.filter(o => o.type === 'lead').length,
+        rfqs: opps.filter(o => o.type === 'rfq').length,
+        rfps: opps.filter(o => o.type === 'rfp').length,
+        tenders: opps.filter(o => o.type === 'tender').length,
+        funders: opps.filter(o => o.type === 'funder').length,
+        totalValue: opps.reduce((s, o) => s + o.value, 0),
+        hotLeads: opps.filter(o => o.status === 'hot').length,
+        newToday: opps.filter(o => o.posted === new Date().toISOString().split('T')[0]).length,
+      };
+    }
+  };
+})();
